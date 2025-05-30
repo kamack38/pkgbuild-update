@@ -1,4 +1,4 @@
-# Arch Linux's package tools action
+# PKGBUILD update action
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kamack38/pkgbuild-update/CD.yml?label=CI&style=flat-square)](https://github.com/kamack38/pkgbuild-update/actions)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/kamack38/pkgbuild-update?style=flat-square)](https://github.com/kamack38/pkgbuild-update/releases)
