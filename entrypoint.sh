@@ -17,6 +17,9 @@ echo "::endgroup::"
 
 # Update pkgver
 CURRENT_PKGVER=$(sed -n "s:^pkgver=\(.*\):\1:p" PKGBUILD)
+
+# Fix permisions for output
+sudo chmod 777 $GITHUB_OUTPUT
 echo "old_pkgver=$CURRENT_PKGVER" >>$GITHUB_OUTPUT
 if [[ -n $INPUT_PKGVER ]]; then
 	NEW_PKGVER="$INPUT_PKGVER"
