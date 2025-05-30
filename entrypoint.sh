@@ -36,6 +36,9 @@ else
 		echo "::endgroup::"
 	fi
 
+	# Save current state
+	git add .
+
 	# Update package version
 	echo "::group::Running makepkg -do"
 	makepkg -do --noconfirm
@@ -51,6 +54,8 @@ else
 	# List existing files
 	ls -a
 
+	# Remove state
+	git reset
 	echo "::endgroup::"
 fi
 
@@ -67,6 +72,9 @@ fi
 
 # Update checksums
 if [[ $INPUT_UPDPKGSUMS == true ]]; then
+	# Save state
+	git add -f .
+
 	echo "::group::Updating checksums on PKGBUILD"
 	updpkgsums
 	git diff PKGBUILD
@@ -78,6 +86,8 @@ if [[ $INPUT_UPDPKGSUMS == true ]]; then
 	# List existing files
 	ls -a
 
+	# Remove state
+	git reset
 	echo "::endgroup::"
 fi
 
