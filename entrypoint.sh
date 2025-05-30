@@ -62,13 +62,18 @@ fi
 echo "new_pkgver=$NEW_PKGVER" >>$GITHUB_OUTPUT
 
 # Update pkgrel
+CURRENT_PKGREL=$(sed -n "s:^pkgrel=\(.*\):\1:p" PKGBUILD)
+echo "old_pkgrel=$CURRENT_PKGREL" >>$GITHUB_OUTPUT
 if [[ -n $INPUT_PKGREL ]]; then
-	CURRENT_PKGREL=$(sed -n "s:^pkgrel=\(.*\):\1:p" PKGBUILD)
-	echo "::group::Updating pkgrel on PKGBUILD from $CURRENT_PKGREL to $INPUT_PKGREL"
-	sed -i "s:^pkgrel=.*$:pkgrel=$INPUT_PKGREL:g" PKGBUILD
+	NEW_PKGREL=$INPUT_PKGREL
+	echo "::group::Updating pkgrel on PKGBUILD from $CURRENT_PKGREL to $NEW_PKGREL"
+	sed -i "s:^pkgrel=.*$:pkgrel=$NEW_PKGREL:g" PKGBUILD
 	git diff PKGBUILD
 	echo "::endgroup::"
+else
+	NEW_PKGREL=$CURRENT_PKGREL
 fi
+echo "new_pkgrel=$NEW_PKGREL" >>$GITHUB_OUTPUT
 
 # Update checksums
 if [[ $INPUT_UPDPKGSUMS == true ]]; then

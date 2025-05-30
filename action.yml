@@ -63,6 +63,10 @@ outputs:
     description: 'Old package version'
   new_pkgver:
     description: 'New package version'
+  old_pkgrel:
+    description: 'Old package release number'
+  new_pkgrel:
+    description: 'New package release number'
 
 runs:
   using: 'docker'

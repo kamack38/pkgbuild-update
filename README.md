@@ -53,10 +53,12 @@ This action has the following outputs that can be accessed as
 
 ### Examples
 
-| Name       | Type   | Description                                                             |
-| ---------- | ------ | ----------------------------------------------------------------------- |
-| old_pkgver | String | The package version obtained before updating the package                |
-| new_pkgver | String | The package version after updating it (may be the same as `old_pkgver`) |
+| Name       | Type   | Description                                                                   |
+| ---------- | ------ | ----------------------------------------------------------------------------- |
+| old_pkgver | String | The package version obtained before updating the package                      |
+| new_pkgver | String | The package version after updating it (may be the same as `old_pkgver`)       |
+| old_pkgrel | String | The package release number obtained before setting it                         |
+| new_pkgrel | String | The package release number after setting it (may be the same as `old_pkgrel`) |
 
 #### 1. Basic
 
