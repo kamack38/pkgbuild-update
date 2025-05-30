@@ -29,7 +29,7 @@ if [[ -n $INPUT_PKGVER ]]; then
 	echo "::endgroup::"
 else
 	# Install make depends using paru from aur
-	if [[ -n $INPUT_PARU ]]; then
+	if [[ $INPUT_PARU == true ]]; then
 		echo "::group::Installing make dependcies using paru"
 		source PKGBUILD
 		paru -Syu --needed --noconfirm "${makedepends[@]}"
@@ -105,18 +105,19 @@ sudo cp -fv "$BUILDPATH"/* "$WORKPATH"
 echo "::endgroup::"
 
 # Build the new package
-if [[ -n $INPUT_BUILD ]]; then
+if [[ $INPUT_BUILD == true ]]; then
 	# Install dependcies using paru
-	if [[ -n $INPUT_PARU ]]; then
-		echo "::group::Installing make dependcies using paru"
+	if [[ $INPUT_PARU == true ]]; then
+		echo "::group::Installing dependcies using paru"
 		source PKGBUILD
 		paru -Syu --needed --noconfirm "${depends[@]}" "${makedepends[@]}"
 		echo "::endgroup::"
-	elif [[ -n $INPUT_FLAGS ]]; then
-		echo "::group::Running makepkg with flags ($INPUT_FLAGS)"
-		makepkg "$INPUT_FLAGS"
-		echo "::endgroup::"
 	fi
+
+	# Build the package
+	echo "::group::Running makepkg with flags ($INPUT_FLAGS)"
+	makepkg "$INPUT_FLAGS"
+	echo "::endgroup::"
 fi
 
 # Push the package to aur
