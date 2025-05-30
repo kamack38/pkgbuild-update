@@ -117,7 +117,7 @@ if [[ -n $INPUT_BUILD ]]; then
 		makepkg "$INPUT_FLAGS"
 		echo "::endgroup::"
 	fi
-if
+fi
 
 # Push the package to aur
 if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME ]]; then
