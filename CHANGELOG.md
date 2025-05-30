@@ -10,6 +10,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - Add new outputs - `old_pkgrel` and `new_pkgrel`
+- Add placeholders to messages
 
 ## [1.0.1] - 2025-05-30
 

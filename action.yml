@@ -50,6 +50,7 @@ inputs:
     required: false
   aur_commit_message:
     description: 'Commit message to use when pushing package to the AUR'
+    default: 'Updating $AUR_PKGNAME to $NEW_PKGVER'
     required: false
   aur_ssh_private_key:
     description: 'Your private key with access to the AUR package.'

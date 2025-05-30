@@ -16,14 +16,14 @@ cp -fv "$WORKPATH"/* ./
 echo "::endgroup::"
 
 # Update pkgver
-CURRENT_PKGVER=$(sed -n "s:^pkgver=\(.*\):\1:p" PKGBUILD)
+OLD_PKGVER=$(sed -n "s:^pkgver=\(.*\):\1:p" PKGBUILD)
 
 # Fix permisions for output
 sudo chmod 777 $GITHUB_OUTPUT
-echo "old_pkgver=$CURRENT_PKGVER" >>$GITHUB_OUTPUT
+echo "old_pkgver=$OLD_PKGVER" >>$GITHUB_OUTPUT
 if [[ -n $INPUT_PKGVER ]]; then
 	NEW_PKGVER="$INPUT_PKGVER"
-	echo "::group::Updating pkgver on PKGBUILD from $CURRENT_PKGVER to $NEW_PKGVER"
+	echo "::group::Updating pkgver on PKGBUILD from $OLD_PKGVER to $NEW_PKGVER"
 	sed -i "s:^pkgver=.*$:pkgver=$INPUT_PKGVER:g" PKGBUILD
 	git diff PKGBUILD
 	echo "::endgroup::"
@@ -62,16 +62,16 @@ fi
 echo "new_pkgver=$NEW_PKGVER" >>$GITHUB_OUTPUT
 
 # Update pkgrel
-CURRENT_PKGREL=$(sed -n "s:^pkgrel=\(.*\):\1:p" PKGBUILD)
-echo "old_pkgrel=$CURRENT_PKGREL" >>$GITHUB_OUTPUT
+OLD_PKGREL=$(sed -n "s:^pkgrel=\(.*\):\1:p" PKGBUILD)
+echo "old_pkgrel=$OLD_PKGREL" >>$GITHUB_OUTPUT
 if [[ -n $INPUT_PKGREL ]]; then
 	NEW_PKGREL=$INPUT_PKGREL
-	echo "::group::Updating pkgrel on PKGBUILD from $CURRENT_PKGREL to $NEW_PKGREL"
+	echo "::group::Updating pkgrel on PKGBUILD from $OLD_PKGREL to $NEW_PKGREL"
 	sed -i "s:^pkgrel=.*$:pkgrel=$NEW_PKGREL:g" PKGBUILD
 	git diff PKGBUILD
 	echo "::endgroup::"
 else
-	NEW_PKGREL=$CURRENT_PKGREL
+	NEW_PKGREL=$OLD_PKGREL
 fi
 echo "new_pkgrel=$NEW_PKGREL" >>$GITHUB_OUTPUT
 
@@ -126,12 +126,12 @@ if [[ $INPUT_BUILD == true ]]; then
 fi
 
 # Push the package to aur
-if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME ]]; then
-	if [[ "$INPUT_AUR_COMMIT_MESSAGE" == "" ]]; then
-		INPUT_AUR_COMMIT_MESSAGE="Update $INPUT_AUR_PKGNAME to $NEW_PKGVER"
-		echo "Aur commit message not set! Setting it to '$INPUT_AUR_COMMIT_MESSAGE'"
-	fi
-
+INPUT_AUR_COMMIT_MESSAGE=$(
+	echo "$INPUT_AUR_COMMIT_MESSAGE" | sed "s/\\\$AUR_PKGNAME/$INPUT_AUR_PKGNAME/g;
+	s/\\\$OLD_PKGVER/$OLD_PKGVER/g;
+	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
+)
+if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME && -n $INPUT_AUR_COMMIT_MESSAGE ]]; then
 	echo "::group::Adding aur.archlinux.org to known hosts"
 	touch $HOME/.ssh/known_hosts
 	ssh-keyscan -v -t 'rsa,ecdsa,ed25519' aur.archlinux.org >>~/.ssh/known_hosts

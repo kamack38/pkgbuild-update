@@ -29,29 +29,27 @@ This action is for updating PKGBUILDs for AUR packages
 
 Following inputs can be used as `step.with` keys:
 
-| Name                | Type    | Description                                                                | Default            | Required |
-| ------------------- | ------- | -------------------------------------------------------------------------- | ------------------ | -------- |
-| path                | String  | Location for this action to run                                            |                    | `false`  |
-| pkgver              | String  | New `pkgver` for PKGBUILD                                                  |                    | `false`  |
-| pkgrel              | Integer | New `pkgrel` for PKGBUILD                                                  |                    | `false`  |
-| updpkgsums          | Boolean | Update checksums on PKGBUILD                                               | `true`             | `false`  |
-| srcinfo             | Boolean | Generate new .SRCINFO                                                      | `true`             | `false`  |
-| build               | Boolean | Whether to build the package after updating it to validate the new version | `false`            | `false`  |
-| flags               | String  | Flags for `makepkg`                                                        | `-cfs --noconfirm` | `false`  |
-| paru                | Boolean | Resolve dependencies using paru                                            | `false`            | `false`  |
-| aur_pkgname         | String  | AUR package name. Defaults to the one provided in PKGBUILD                 |                    | `false`  |
-| aur_commit_username | String  | The username to use when pushing package to the AUR                        |                    | `false`  |
-| aur_commit_email    | String  | The email to use when pushing package to the AUR                           |                    | `false`  |
-| aur_commit_message  | String  | Commit message to use when pushing package to the AUR                      |                    | `false`  |
-| aur_ssh_private_key | String  | Your private key with access to the AUR package.                           |                    | `false`  |
-| aur_force_push      | String  | Use --force when pushing to the AUR.                                       | `false`            | `false`  |
+| Name                | Type    | Description                                                                                      | Default                                | Required |
+| ------------------- | ------- | ------------------------------------------------------------------------------------------------ | -------------------------------------- | -------- |
+| path                | String  | Location for this action to run                                                                  |                                        | `false`  |
+| pkgver              | String  | New `pkgver` for PKGBUILD                                                                        |                                        | `false`  |
+| pkgrel              | Integer | New `pkgrel` for PKGBUILD                                                                        |                                        | `false`  |
+| updpkgsums          | Boolean | Update checksums on PKGBUILD                                                                     | `true`                                 | `false`  |
+| srcinfo             | Boolean | Generate new .SRCINFO                                                                            | `true`                                 | `false`  |
+| build               | Boolean | Whether to build the package after updating it to validate the new version                       | `false`                                | `false`  |
+| flags               | String  | Flags for `makepkg`                                                                              | `-cfs --noconfirm`                     | `false`  |
+| paru                | Boolean | Resolve dependencies using paru                                                                  | `false`                                | `false`  |
+| aur_pkgname         | String  | AUR package name. Defaults to the one provided in PKGBUILD                                       |                                        | `false`  |
+| aur_commit_username | String  | The username to use when pushing package to the AUR                                              |                                        | `false`  |
+| aur_commit_email    | String  | The email to use when pushing package to the AUR                                                 |                                        | `false`  |
+| aur_commit_message  | String  | Commit message to use when pushing package to the AUR. Can contain [placeholders](#Placeholders) | `Updating $AUR_PKGNAME to $NEW_PKGVER` | `false`  |
+| aur_ssh_private_key | String  | Your private key with access to the AUR package.                                                 |                                        | `false`  |
+| aur_force_push      | String  | Use --force when pushing to the AUR.                                                             | `false`                                | `false`  |
 
 ### Outputs
 
 This action has the following outputs that can be accessed as
 `${{ steps.<step-id>.outputs.<output-name> }}`:
-
-### Examples
 
 | Name       | Type   | Description                                                                   |
 | ---------- | ------ | ----------------------------------------------------------------------------- |
@@ -59,6 +57,16 @@ This action has the following outputs that can be accessed as
 | new_pkgver | String | The package version after updating it (may be the same as `old_pkgver`)       |
 | old_pkgrel | String | The package release number obtained before setting it                         |
 | new_pkgrel | String | The package release number after setting it (may be the same as `old_pkgrel`) |
+
+### Placeholders
+
+Placeholders are special strings that are expanded in the workflow. The available are.
+
+- `$AUR_PKGNAME` - the same as `$INPUT_AUR_PKGNAME`
+- `$OLD_PKGVER` - the version before updating
+- `$NEW_PKGVER` - the version after updating
+
+### Examples
 
 #### 1. Basic
 
