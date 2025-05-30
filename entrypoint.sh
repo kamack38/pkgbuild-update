@@ -37,7 +37,7 @@ else
 	fi
 
 	# Save current state
-	git add .
+	git add -v .
 
 	# Update package version
 	echo "::group::Running makepkg -do"
@@ -73,7 +73,7 @@ fi
 # Update checksums
 if [[ $INPUT_UPDPKGSUMS == true ]]; then
 	# Save state
-	git add -f .
+	git add -fv .
 
 	echo "::group::Updating checksums on PKGBUILD"
 	updpkgsums
