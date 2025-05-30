@@ -1,6 +1,6 @@
 # Arch Linux's package tools action
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/kamack38/pkgbuild-update/CI?label=CI&style=flat-square)](https://github.com/kamack38/pkgbuild-update/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/kamack38/pkgbuild-update/CD.yml?label=CI&style=flat-square)](https://github.com/kamack38/pkgbuild-update/actions)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/kamack38/pkgbuild-update?style=flat-square)](https://github.com/kamack38/pkgbuild-update/releases)
 [![GitHub](https://img.shields.io/github/license/kamack38/pkgbuild-update?style=flat-square)](./LICENSE)
 
