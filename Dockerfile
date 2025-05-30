@@ -18,6 +18,7 @@ RUN cd paru-bin && makepkg -si --noconfirm
 # Copy files
 COPY LICENSE README.md /
 COPY entrypoint.sh /entrypoint.sh
+RUN mkdir -p $BUILDER_HOME/.ssh
 COPY ssh_config $BUILDER_HOME/.ssh/config
 
 # Set entrypoint
