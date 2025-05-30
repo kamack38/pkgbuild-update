@@ -71,6 +71,14 @@ if [[ $INPUT_UPDPKGSUMS == true ]]; then
 	updpkgsums
 	git diff PKGBUILD
 	echo "::endgroup::"
+	echo "::group::Cleaning downloaded files"
+	# Delete all build files
+	git clean -fdx
+
+	# List existing files
+	ls -a
+
+	echo "::endgroup::"
 fi
 
 # Generate .SRCINFO
@@ -83,7 +91,7 @@ fi
 
 echo "::group::Copying files from $BUILDPATH to $WORKPATH"
 sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
-cp -fv "$BUILDPATH"/* "$WORKPATH"
+sudo cp -fv "$BUILDPATH"/* "$WORKPATH"
 echo "::endgroup::"
 
 # Build the new package
