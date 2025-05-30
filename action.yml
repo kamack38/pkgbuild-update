@@ -1,0 +1,84 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: "Arch Linux's package updater"
+description: "GitHub Action to update and push an Arch Linux package"
+author: 'kamack38'
+branding:
+  icon: 'package'
+  color: 'blue'
+
+inputs:
+  path:
+    description: 'Location for this action to run'
+    default: ''
+    required: false
+  pkgver:
+    description: 'New pkgver for PKGBUILD'
+    default: ''
+    required: false
+  pkgrel:
+    description: 'New pkgrel for PKGBUILD'
+    default: ''
+    required: false
+  updpkgsums:
+    description: 'Update checksums on PKGBUILD'
+    default: 'true'
+    required: false
+  srcinfo:
+    description: 'Generate new .SRCINFO'
+    default: 'true'
+    required: false
+  build:
+    description: 'Whether to build the package after updating it to validate the new version'
+    default: 'false'
+    required: false
+  flags:
+    description: 'Flags for makepkg'
+    default: '-cfs --noconfirm'
+    required: false
+  paru:
+    description: 'Resolve dependencies using paru'
+    default: 'false'
+    required: false
+  aur_pkgname:
+    description: 'AUR package name. Defaults to the one provided in PKGBUILD'
+    required: false
+  aur_commit_username:
+    description: 'The username to use when pushing package to the AUR'
+    required: false
+  aur_commit_email:
+    description: 'The email to use when pushing package to the AUR'
+    required: false
+  aur_commit_message:
+    description: 'Commit message to use when pushing package to the AUR'
+    required: false
+  aur_ssh_private_key:
+    description: 'Your private key with access to the AUR package.'
+    required: false
+  aur_force_push:
+    description: 'Use --force when pushing to the AUR.'
+    default: 'false'
+    required: false
+outputs:
+  old_pkgver:
+    description: 'Old package version'
+  new_pkgver:
+    description: 'New package version'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.path }}
+    - ${{ inputs.pkgver }}
+    - ${{ inputs.pkgrel }}
+    - ${{ inputs.updpkgsums }}
+    - ${{ inputs.srcinfo }}
+    - ${{ inputs.build }}
+    - ${{ inputs.flags }}
+    - ${{ inputs.paru }}
+    - ${{ inputs.aur_pkgname }}
+    - ${{ inputs.aur_commit_username }}
+    - ${{ inputs.aur_commit_email }}
+    - ${{ inputs.aur_commit_message }}
+    - ${{ inputs.aur_ssh_private_key }}
+    - ${{ inputs.aur_force_push }}
