@@ -131,6 +131,10 @@ INPUT_AUR_COMMIT_MESSAGE=$(
 	s/\\\$OLD_PKGVER/$OLD_PKGVER/g;
 	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
 )
+if [[ -n $INPUT_AUR_PKGNAME ]];
+	source PKGBUILD
+	INPUT_AUR_PKGNAME="$pkgname"
+fi
 if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME && -n $INPUT_AUR_COMMIT_MESSAGE ]]; then
 	echo "::group::Adding aur.archlinux.org to known hosts"
 	touch $HOME/.ssh/known_hosts
