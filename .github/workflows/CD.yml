@@ -33,7 +33,6 @@ jobs:
       - name: Running test
         uses: ./
         with:
-          pkgver: '0.25.28'
           pkgrel: 2
           updpkgsums: true
           srcinfo: true
