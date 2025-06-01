@@ -13,6 +13,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Placeholders to messages
 - Automatically derive `aur_pkgname` from PKGBUILD
 
+### Fix
+
+- Add missing `then` keyword
+
 ## [1.0.1] - 2025-05-30
 
 ### Added

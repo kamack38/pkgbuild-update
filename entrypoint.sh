@@ -131,7 +131,7 @@ INPUT_AUR_COMMIT_MESSAGE=$(
 	s/\\\$OLD_PKGVER/$OLD_PKGVER/g;
 	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
 )
-if [[ -n $INPUT_AUR_PKGNAME ]];
+if [[ -n $INPUT_AUR_PKGNAME ]]; then
 	source PKGBUILD
 	INPUT_AUR_PKGNAME="$pkgname"
 fi
