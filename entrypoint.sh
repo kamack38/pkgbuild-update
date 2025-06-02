@@ -98,6 +98,9 @@ if [[ $INPUT_SRCINFO == true ]]; then
 	echo "::group::Generating new .SRCINFO based on PKGBUILD"
 	makepkg --printsrcinfo >.SRCINFO
 	git diff .SRCINFO
+
+	# Show the file contents since it can be ignored
+	cat .SRCINFO
 	echo "::endgroup::"
 fi
 
