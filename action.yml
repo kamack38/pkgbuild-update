@@ -25,7 +25,7 @@ inputs:
     required: false
   srcinfo:
     description: 'Generate new .SRCINFO'
-    default: 'true'
+    default: 'false'
     required: false
   build:
     description: 'Whether to build the package after updating it to validate the new version'

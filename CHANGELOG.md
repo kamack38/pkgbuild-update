@@ -11,7 +11,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - List remaining files after cleaning build files
 
-### Fix
+### Changed
+
+- Change how `srcinfo` argument works. It now is only used to generate `.SRCINFO` if you want to
+  include it in your repo.
+
+### Fixed
 
 - Disable `nounset` when sourcing PKGBUILD since `$pkgdir` and `$srcdir` may not be set
 - Show `.SRCINFO` contents
@@ -25,7 +30,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Automatically derive `aur_pkgname` from PKGBUILD
 - Rework the cleaning mechanism
 
-### Fix
+### Fixed
 
 - Add missing `then` keyword
 

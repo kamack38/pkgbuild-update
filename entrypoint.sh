@@ -98,14 +98,11 @@ if [[ $INPUT_SRCINFO == true ]]; then
 	echo "::group::Generating new .SRCINFO based on PKGBUILD"
 	makepkg --printsrcinfo >.SRCINFO
 	git diff .SRCINFO
-
-	# Show the file contents since it can be ignored
-	cat .SRCINFO
 	echo "::endgroup::"
 fi
 
 echo "::group::Copying files from $BUILDPATH to $WORKPATH"
-sudo cp -fv "$BUILDPATH"/* "$WORKPATH"
+sudo cp -fv "$BUILDPATH"/. "$WORKPATH"
 echo "::endgroup::"
 
 # Build the new package
@@ -167,8 +164,12 @@ if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_CO
 	cp -fva "$WORKPATH/." /tmp/aur-repo
 	echo "::endgroup::"
 
-	echo "::group::Committing files to the repository"
+	echo "::group::Generating new .SRCINFO based on PKGBUILD"
 	cd /tmp/aur-repo
+	makepkg --printsrcinfo >.SRCINFO
+	echo "::endgroup::"
+
+	echo "::group::Committing files to the repository"
 	git add --all
 	ls -al
 	git diff-index --quiet HEAD || git commit -m "$INPUT_AUR_COMMIT_MESSAGE" # use `git diff-index --quiet HEAD ||` to avoid error

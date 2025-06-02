@@ -35,7 +35,7 @@ Following inputs can be used as `step.with` keys:
 | pkgver              | String  | New `pkgver` for PKGBUILD                                                                        |                                        | `false`  |
 | pkgrel              | Integer | New `pkgrel` for PKGBUILD                                                                        |                                        | `false`  |
 | updpkgsums          | Boolean | Update checksums on PKGBUILD                                                                     | `true`                                 | `false`  |
-| srcinfo             | Boolean | Generate new .SRCINFO                                                                            | `true`                                 | `false`  |
+| srcinfo             | Boolean | Generate new `.SRCINFO`. It is automatically generated when pushing to AUR                       | `true`                                 | `false`  |
 | build               | Boolean | Whether to build the package after updating it to validate the new version                       | `false`                                | `false`  |
 | flags               | String  | Flags for `makepkg`                                                                              | `-cfs --noconfirm`                     | `false`  |
 | paru                | Boolean | Resolve dependencies using paru                                                                  | `false`                                | `false`  |
