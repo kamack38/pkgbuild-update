@@ -20,6 +20,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Disable `nounset` when sourcing PKGBUILD since `$pkgdir` and `$srcdir` may not be set
 - Show `.SRCINFO` contents
+- Use archive mode when coping from paths like `dir/.`
 
 ## [1.1.0] - 2025-06-02
 
