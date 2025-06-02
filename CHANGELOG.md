@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- List remaining files after cleaning build files
+
 ## [1.1.0] - 2025-06-02
 
 ### Added

@@ -67,6 +67,9 @@ for item in *; do
 		rm -rvf "$item"
 	fi
 done
+
+# List remaining files
+ls -a
 echo "::endgroup::"
 
 # Update checksums
@@ -82,6 +85,9 @@ if [[ $INPUT_UPDPKGSUMS == true ]]; then
 			rm -rvf "$item"
 		fi
 	done
+
+	# List remaining files
+	ls -a
 	echo "::endgroup::"
 fi
 
