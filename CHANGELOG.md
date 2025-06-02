@@ -12,6 +12,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - New outputs - `old_pkgrel` and `new_pkgrel`
 - Placeholders to messages
 - Automatically derive `aur_pkgname` from PKGBUILD
+- Rework the cleaning mechanism
 
 ### Fix
 

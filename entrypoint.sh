@@ -62,9 +62,11 @@ echo "new_pkgrel=$NEW_PKGREL" >>$GITHUB_OUTPUT
 
 # Clean build directory
 echo "::group::Cleaning build directory"
-sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
-rm -rvf ./*
-cp -fv "$WORKPATH"/* ./
+for item in *; do
+	if [ ! -f "$WORKPATH/$item" ]; then
+		rm -rvf "$item"
+	fi
+done
 echo "::endgroup::"
 
 # Update checksums
@@ -75,9 +77,11 @@ if [[ $INPUT_UPDPKGSUMS == true ]]; then
 	echo "::endgroup::"
 
 	echo "::group::Cleaning downloaded files"
-	sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
-	rm -rvf ./*
-	cp -fv "$WORKPATH"/* ./
+	for item in *; do
+		if [ ! -f "$WORKPATH/$item" ]; then
+			rm -rvf "$item"
+		fi
+	done
 	echo "::endgroup::"
 fi
 
