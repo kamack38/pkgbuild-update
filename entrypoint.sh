@@ -36,27 +36,12 @@ else
 		echo "::endgroup::"
 	fi
 
-	# Save current state
-	git add -v .
-
 	# Update package version
 	echo "::group::Running makepkg -do"
 	makepkg -do --noconfirm
 	echo "::endgroup::"
 	NEW_PKGVER=$(sed -n "s:^pkgver=\(.*\):\1:p" PKGBUILD)
 	echo "new_pkgver=$NEW_PKGVER" >>$GITHUB_OUTPUT
-
-	# Clean build directory
-	echo "::group::Cleaning build directory"
-	# Delete all build files
-	git clean -fdx
-
-	# List existing files
-	ls -a
-
-	# Remove state
-	git reset
-	echo "::endgroup::"
 fi
 
 echo "new_pkgver=$NEW_PKGVER" >>$GITHUB_OUTPUT
@@ -75,24 +60,24 @@ else
 fi
 echo "new_pkgrel=$NEW_PKGREL" >>$GITHUB_OUTPUT
 
+# Clean build directory
+echo "::group::Cleaning build directory"
+sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
+rm -rvf ./*
+cp -fv "$WORKPATH"/* ./
+echo "::endgroup::"
+
 # Update checksums
 if [[ $INPUT_UPDPKGSUMS == true ]]; then
-	# Save state
-	git add -fv .
-
 	echo "::group::Updating checksums on PKGBUILD"
 	updpkgsums
 	git diff PKGBUILD
 	echo "::endgroup::"
+
 	echo "::group::Cleaning downloaded files"
-	# Delete all build files
-	git clean -fdx
-
-	# List existing files
-	ls -a
-
-	# Remove state
-	git reset
+	sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
+	rm -rvf ./*
+	cp -fv "$WORKPATH"/* ./
 	echo "::endgroup::"
 fi
 
