@@ -130,10 +130,13 @@ INPUT_AUR_COMMIT_MESSAGE=$(
 	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
 )
 if [[ -n $INPUT_AUR_PKGNAME ]]; then
+	echo "::group::Setting AUR package name"
 	set +o nounset
 	source PKGBUILD
 	set -o nounset
 	INPUT_AUR_PKGNAME="$pkgname"
+	echo "The package name was set to '$INPUT_AUR_PKGNAME'"
+	echo "::endgroup::"
 fi
 if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME && -n $INPUT_AUR_COMMIT_MESSAGE ]]; then
 	echo "::group::Adding aur.archlinux.org to known hosts"

@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Show AUR package name after setting it
+
 ### Fixed
 
 - Print `.SRCINFO` after generating it
