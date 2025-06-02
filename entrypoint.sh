@@ -156,8 +156,9 @@ if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_CO
 	git config --global user.email "$INPUT_AUR_COMMIT_EMAIL"
 	echo "::endgroup::"
 
-	echo "::group::Cloning AUR package into /tmp/aur-repo"
-	git clone -v "https://aur.archlinux.org/${INPUT_AUR_PKGNAME}.git" /tmp/aur-repo
+	AUR_REPO_URL="https://aur.archlinux.org/${INPUT_AUR_PKGNAME}.git"
+	echo "::group::Cloning https://aur.archlinux.org/${INPUT_AUR_PKGNAME}.git into /tmp/aur-repo"
+	git clone -v "$AUR_REPO_URL" /tmp/aur-repo
 	echo "::endgroup::"
 
 	echo "::group::Copying files into /tmp/aur-repo"
@@ -167,6 +168,7 @@ if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_CO
 	echo "::group::Generating new .SRCINFO based on PKGBUILD"
 	cd /tmp/aur-repo
 	makepkg --printsrcinfo >.SRCINFO
+	cat .SRCINFO
 	echo "::endgroup::"
 
 	echo "::group::Committing files to the repository"

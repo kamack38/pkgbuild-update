@@ -7,6 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- Print `.SRCINFO` after generating it
+
 ## [2.0.0] - 2025-06-02
 
 ### Added
