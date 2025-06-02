@@ -31,7 +31,9 @@ else
 	# Install make depends using paru from aur
 	if [[ $INPUT_PARU == true ]]; then
 		echo "::group::Installing make dependcies using paru"
+		set +o nounset
 		source PKGBUILD
+		set -o nounset
 		paru -Syu --needed --noconfirm "${makedepends[@]}"
 		echo "::endgroup::"
 	fi
@@ -100,7 +102,6 @@ if [[ $INPUT_SRCINFO == true ]]; then
 fi
 
 echo "::group::Copying files from $BUILDPATH to $WORKPATH"
-sudo cp -fv PKGBUILD "$WORKPATH"/PKGBUILD
 sudo cp -fv "$BUILDPATH"/* "$WORKPATH"
 echo "::endgroup::"
 
@@ -109,7 +110,9 @@ if [[ $INPUT_BUILD == true ]]; then
 	# Install dependcies using paru
 	if [[ $INPUT_PARU == true ]]; then
 		echo "::group::Installing dependcies using paru"
+		set +o nounset
 		source PKGBUILD
+		set -o nounset
 		paru -Syu --needed --noconfirm "${depends[@]}" "${makedepends[@]}"
 		echo "::endgroup::"
 	fi
@@ -127,7 +130,9 @@ INPUT_AUR_COMMIT_MESSAGE=$(
 	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
 )
 if [[ -n $INPUT_AUR_PKGNAME ]]; then
+	set +o nounset
 	source PKGBUILD
+	set -o nounset
 	INPUT_AUR_PKGNAME="$pkgname"
 fi
 if [[ -n $INPUT_AUR_PKGNAME && -n $INPUT_AUR_SSH_PRIVATE_KEY && -n $INPUT_AUR_COMMIT_EMAIL && -n $INPUT_AUR_COMMIT_USERNAME && -n $INPUT_AUR_COMMIT_MESSAGE ]]; then

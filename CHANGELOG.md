@@ -11,6 +11,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - List remaining files after cleaning build files
 
+### Fix
+
+- Disable `nounset` when sourcing PKGBUILD since `$pkgdir` and `$srcdir` may not be set
+
 ## [1.1.0] - 2025-06-02
 
 ### Added
