@@ -102,7 +102,7 @@ if [[ $INPUT_SRCINFO == true ]]; then
 fi
 
 echo "::group::Copying files from $BUILDPATH to $WORKPATH"
-sudo cp -fva "$BUILDPATH"/. "$WORKPATH"
+sudo cp -fv "$BUILDPATH"/* "$WORKPATH"
 echo "::endgroup::"
 
 # Build the new package
