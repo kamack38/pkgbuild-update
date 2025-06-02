@@ -7,6 +7,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-06-02
+
 ### Added
 
 - List remaining files after cleaning build files
@@ -53,7 +55,8 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 - Initial release
 
-[Unreleased]: https://github.com/kamack38/pkgbuild-update/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/kamack38/pkgbuild-update/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/kamack38/pkgbuild-update/releases/tag/v2.0.0
 [1.1.0]: https://github.com/kamack38/pkgbuild-update/releases/tag/v1.1.0
 [1.0.1]: https://github.com/kamack38/pkgbuild-update/releases/tag/v1.0.1
 [1.0.0]: https://github.com/kamack38/pkgbuild-update/releases/tag/v1.0.0
