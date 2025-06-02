@@ -129,12 +129,16 @@ INPUT_AUR_COMMIT_MESSAGE=$(
 	s/\\\$OLD_PKGVER/$OLD_PKGVER/g;
 	s/\\\$NEW_PKGVER/$NEW_PKGVER/g"
 )
-if [[ -n $INPUT_AUR_PKGNAME ]]; then
+if [[ -z $INPUT_AUR_PKGNAME ]]; then
 	echo "::group::Setting AUR package name"
 	set +o nounset
 	source PKGBUILD
 	set -o nounset
-	INPUT_AUR_PKGNAME="$pkgname"
+	if [[ -n ${pkgbase:-} ]]; then
+		INPUT_AUR_PKGNAME="$pkgbase"
+	else
+		INPUT_AUR_PKGNAME="$pkgname"
+	fi
 	echo "The package name was set to '$INPUT_AUR_PKGNAME'"
 	echo "::endgroup::"
 fi

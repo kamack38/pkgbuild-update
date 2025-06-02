@@ -14,6 +14,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Print `.SRCINFO` after generating it
+- Set the package name to pkgbase if it exists
 
 ## [2.0.0] - 2025-06-02
 
