@@ -131,6 +131,13 @@ jobs:
         run: echo "The package version was updated from ${{ steps.update.outputs.old_pkgver }} to ${{ steps.update.outputs.new_pkgver }}"
 ```
 
+## Roadmap
+
+- [ ] Push updates to the repo
+  - [ ] Push with `--rebase`
+  - [ ] Support placeholders in commit messages
+  - [ ] Set commit author
+
 ## Credits
 
 This action is heavily inspired by
