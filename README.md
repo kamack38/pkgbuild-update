@@ -141,9 +141,9 @@ jobs:
 ## Credits
 
 This action is heavily inspired by
-[heyhusen/archlinux-package-action](https://github.com/heyhusen/archlinux-package-action). The AUR
+[heyhusen/archlinux-package-action](https://github.com/heyhusen/archlinux-package-action).
 
-pushing is based on [jbouter/aur-releaser](https://github.com/jbouter/aur-releaser).
+The AUR pushing is based on [jbouter/aur-releaser](https://github.com/jbouter/aur-releaser).
 
 ## License
 
