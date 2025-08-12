@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Update action.yml to build locally
         run: |
@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Log in to ghcr.io
         uses: redhat-actions/podman-login@v1
@@ -103,7 +103,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get sample PKGBUILD
         run: wget https://github.com/kamack38/packages/raw/0a152fb4c1b0de27c7255f4650e92498e83ebe6a/packages/sqruff-bin/PKGBUILD
@@ -141,7 +141,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get branch/tag names
         id: branch-name
